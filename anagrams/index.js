@@ -22,6 +22,12 @@ function anagrams(stringA, stringB) {
     return false
   }
 
+  for (let char in aCharMap) {
+    if (aCharMap[char] !== bCharMap[char]) {
+      return false
+    }
+  } 
+  // return true
   return cleanString(stringA) === cleanString(stringB);
 }
 
@@ -35,10 +41,13 @@ function cleanString(str) {
     .join('');
 }
 
+//takes a string and creates an object to count keys and values within the string that you 
+//pass to count keys and variables
 function buildCharMap(str) {
   const charMap = {};
-
+  //take cases and punction to normalize
   for (let char of str.replace(/[^\w]/g, '').toLowerCase()) {
+    //if it exists add 1 or initialize at 1
     charMap[char] = charMap[char] + 1 || 1;
   }
   return charMap
